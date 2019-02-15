@@ -13,7 +13,13 @@ class AddBook:
                                                                              actualType)
         return errorMessage
 
-    def check_if_book_dict_has_valid_values(self, title, genres, authors=[], tags=[], isbn10="", isbn13=""):
+    def unexpected_length_error_message(self, description, expectedLength, incorrectValue):
+        errorMessage = "{} does not have the expected length of {}\nGot: {}".format(description,
+                                                                                    expectedLength,
+                                                                                    incorrectValue)
+        return errorMessage
+
+    def check_if_book_dict_has_valid_values(self, title, authors, genres=[], tags=[], isbn10="", isbn13=""):
         errorMessage = ""
 
         # Check parameter types
@@ -33,6 +39,14 @@ class AddBook:
                 errorMessageLine = self.format_type_error_message(listParam, "list", listParam)
                 errorMessage = "{}\n{}".format(errorMessage, errorMessageLine)
 
+        # Ensure ISBN have correct length
+        if isbn10 and len(isbn10) != 10:
+            errorMessageLine = self.unexpected_length_error_message("ISBN-10", "10", isbn10)
+            errorMessage = "{}\n{}".format(errorMessage, errorMessageLine)
+        if isbn13 and len(isbn13) != 13:
+            errorMessageLine = self.unexpected_length_error_message("ISBN-13", "13", isbn13)
+            errorMessage = "{}\n{}".format(errorMessage, errorMessageLine)
+
         # If error message is empty return True
         if errorMessage:
             print(errorMessage)
@@ -44,6 +58,7 @@ class AddBook:
         pass
 
     def create_and_append_book_id(self, newBookDict):
+        # md5(title + isbn-10 + isbn-13)
         pass
 
     def add_book_to_db(self, bookDict):
