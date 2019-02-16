@@ -105,27 +105,27 @@ class TestCreateBookId(unittest.TestCase):
         self.AddBook = insertions.AddBook()
 
     def test_string_is_returned(self):
-        returnedValue = self.AddBook.create_book_id("title", "isbn-10", "isbn-13")
+        returnedValue = self.AddBook.create_book_id("title", "isbn10", "isbn13")
 
         self.assertIsInstance(returnedValue, str)
 
     def test_id_is_predictable(self):
-        returnedValue = self.AddBook.create_book_id("title", "isbn-10", "isbn-13")
-        expectedValue = "8abf045d105db432e476ebfce5f7ffba"
+        returnedValue = self.AddBook.create_book_id("title", "isbn10", "isbn13")
+        expectedValue = "08b699203a60d50e99a179745faf8335"
 
-        self.assertEqual(returnedValue, expectedValue)
+        self.assertEqual(expectedValue, returnedValue)
 
     def test_isbn10_is_optional(self):
-        returnedValue = self.AddBook.create_book_id("title", "isbn-13")
-        expectedValue = "e8290b7ad427338ab3c6e60f99792a23"
+        returnedValue = self.AddBook.create_book_id("title", "isbn13")
+        expectedValue = "0cee44d3658b569023e777ab238153b6"
 
-        self.assertEqual(returnedValue, expectedValue)
+        self.assertEqual(expectedValue, returnedValue)
 
     def test_isbn13_is_optional(self):
-        returnedValue = self.AddBook.create_book_id("title", "isbn-10")
-        expectedValue = "a40823e593399c9ca260561118e39cba"
+        returnedValue = self.AddBook.create_book_id("title", "isbn10")
+        expectedValue = "be6d7da4cb39e77a44e6442da493589c"
 
-        self.assertEqual(returnedValue, expectedValue)
+        self.assertEqual(expectedValue, returnedValue)
 
     def test_title_is_required(self):
         self.assertRaises(TypeError, self.AddBook.create_book_id)
@@ -152,13 +152,13 @@ class TestCreateBookDict(unittest.TestCase):
 
     def test_optional_parameters_are_added_empty_if_not_provided(self):
         returnedValue = self.AddBook.create_book_dict("id", "title", ["author"])
-        expectedValue = {"id": "id",
+        expectedValue = {"_id": "id",
                          "title": "title",
                          "authors": ["author"],
                          "genres": [],
                          "tags": [],
-                         "isbn-10": "",
-                         "isbn-13": ""
+                         "isbn10": "",
+                         "isbn13": ""
                          }
 
         self.assertEqual(returnedValue, expectedValue)

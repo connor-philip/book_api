@@ -43,15 +43,15 @@ class AddBook:
 
         # Ensure ISBN have correct length
         if isbn10 and len(isbn10) != 10:
-            errorMessageLine = self.unexpected_length_error_message("ISBN-10", "10", isbn10)
+            errorMessageLine = self.unexpected_length_error_message("ISBN10", "10", isbn10)
             errorMessage = "{}\n{}".format(errorMessage, errorMessageLine)
         if isbn13 and len(isbn13) != 13:
-            errorMessageLine = self.unexpected_length_error_message("ISBN-13", "13", isbn13)
+            errorMessageLine = self.unexpected_length_error_message("ISBN13", "13", isbn13)
             errorMessage = "{}\n{}".format(errorMessage, errorMessageLine)
 
         # If error message is empty return True
         if errorMessage:
-            # print(errorMessage)
+            print(errorMessage)
             return False
         else:
             return True
@@ -69,8 +69,8 @@ class AddBook:
             "authors": authors,
             "genres": genres,
             "tags": tags,
-            "isbn-10": isbn10,
-            "isbn-13": isbn13
+            "isbn10": isbn10,
+            "isbn13": isbn13
         }
 
         return bookDict
