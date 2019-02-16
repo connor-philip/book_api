@@ -7,16 +7,15 @@ class TestCheckIfBookDictHasValidValues(unittest.TestCase):
     def setUp(self):
         self.AddBook = insertions.AddBook()
 
-    def tearDown(self):
-        pass
-
     def test_true_returned_on_success(self):
-        result = self.AddBook.check_if_book_dict_has_valid_values("Book-Title", ["author"])
+        result = self.AddBook.check_if_book_dict_has_valid_values("Book-Title",
+                                                                  ["author"])
 
         self.assertTrue(result)
 
     def test_false_returned_on_error(self):
-        result = self.AddBook.check_if_book_dict_has_valid_values("Book-Title", ["author", False])
+        result = self.AddBook.check_if_book_dict_has_valid_values("Book-Title",
+                                                                  ["author", False])
 
         self.assertFalse(result)
 
