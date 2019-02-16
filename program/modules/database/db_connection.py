@@ -4,4 +4,4 @@ from os import environ
 
 databaseIP = environ['databaseIP']
 client = MongoClient("mongodb://" + databaseIP)
-db = client.bookdb
+bookdb = client.bookdb
