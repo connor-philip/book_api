@@ -134,16 +134,34 @@ class TestCreateBookId(unittest.TestCase):
 class TestCreateBookDict(unittest.TestCase):
 
     def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
+        self.AddBook = insertions.AddBook()
 
     def test_dict_is_returned(self):
-        pass
+        returnedValue = self.AddBook.create_book_dict("id", "title", ["author"])
 
-    def test_extra_keys_are_not_included(self):
-        pass
+        self.assertIsInstance(returnedValue, dict)
+
+    def test_bookid_is_required(self):
+        self.assertRaises(TypeError, self.AddBook.create_book_dict)
+
+    def test_title_is_required(self):
+        self.assertRaises(TypeError, self.AddBook.create_book_dict, ("id"))
+
+    def test_authors_is_required(self):
+        self.assertRaises(TypeError, self.AddBook.create_book_dict, ("id", "title"))
+
+    def test_optional_parameters_are_added_empty_if_not_provided(self):
+        returnedValue = self.AddBook.create_book_dict("id", "title", ["author"])
+        expectedValue = {"id": "id",
+                         "title": "title",
+                         "authors": ["author"],
+                         "genres": [],
+                         "tags": [],
+                         "isbn-10": "",
+                         "isbn-13": ""
+                         }
+
+        self.assertEqual(returnedValue, expectedValue)
 
 
 class TestAddBookToDb(unittest.TestCase):

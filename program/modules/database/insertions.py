@@ -61,8 +61,18 @@ class AddBook:
 
         return hashlib.md5(encodedString).hexdigest()
 
-    def create_book_dict(self):
-        pass
+    def create_book_dict(self, bookId, title, authors, genres=[], tags=[], isbn10="", isbn13=""):
+        bookDict = {
+            "id": bookId,
+            "title": title,
+            "authors": authors,
+            "genres": genres,
+            "tags": tags,
+            "isbn-10": isbn10,
+            "isbn-13": isbn13
+        }
+
+        return bookDict
 
     def add_book_to_db(self):
         pass
