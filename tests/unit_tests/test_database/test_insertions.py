@@ -92,6 +92,44 @@ class TestCheckIfBookDictHasValidValues(unittest.TestCase):
 
         self.assertFalse(result)
 
+    def test_title_is_required(self):
+        self.assertRaises(TypeError, self.AddBook.check_if_book_dict_has_valid_values)
+
+    def test_authors_is_required(self):
+        self.assertRaises(TypeError, self.AddBook.check_if_book_dict_has_valid_values, "title")
+
+
+class TestCreateBookId(unittest.TestCase):
+
+    def setUp(self):
+        self.AddBook = insertions.AddBook()
+
+    def test_string_is_returned(self):
+        returnedValue = self.AddBook.create_book_id("title", "isbn-10", "isbn-13")
+
+        self.assertIsInstance(returnedValue, str)
+
+    def test_id_is_predictable(self):
+        returnedValue = self.AddBook.create_book_id("title", "isbn-10", "isbn-13")
+        expectedValue = "8abf045d105db432e476ebfce5f7ffba"
+
+        self.assertEqual(returnedValue, expectedValue)
+
+    def test_isbn10_is_optional(self):
+        returnedValue = self.AddBook.create_book_id("title", "isbn-13")
+        expectedValue = "e8290b7ad427338ab3c6e60f99792a23"
+
+        self.assertEqual(returnedValue, expectedValue)
+
+    def test_isbn13_is_optional(self):
+        returnedValue = self.AddBook.create_book_id("title", "isbn-10")
+        expectedValue = "a40823e593399c9ca260561118e39cba"
+
+        self.assertEqual(returnedValue, expectedValue)
+
+    def test_title_is_required(self):
+        self.assertRaises(TypeError, self.AddBook.create_book_id)
+
 
 class TestCreateBookDict(unittest.TestCase):
 
@@ -105,18 +143,6 @@ class TestCreateBookDict(unittest.TestCase):
         pass
 
     def test_extra_keys_are_not_included(self):
-        pass
-
-
-class TestCreateBookId(unittest.TestCase):
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def test_id_is_created(self):
         pass
 
 

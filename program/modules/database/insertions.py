@@ -1,3 +1,4 @@
+import hashlib
 
 
 class AddBook:
@@ -49,17 +50,19 @@ class AddBook:
 
         # If error message is empty return True
         if errorMessage:
-            print(errorMessage)
+            # print(errorMessage)
             return False
         else:
             return True
 
-    def create_book_id(self, newBookDict):
-        # md5(title + isbn-10 + isbn-13)
+    def create_book_id(self, title, isbn10="", isbn13=""):
+        joinedString = title + isbn10 + isbn13
+        encodedString = joinedString.encode("utf-8")
+
+        return hashlib.md5(encodedString).hexdigest()
+
+    def create_book_dict(self):
         pass
 
-    def create_book_dict(self, newBookDict):
-        pass
-
-    def add_book_to_db(self, bookDict):
+    def add_book_to_db(self):
         pass
