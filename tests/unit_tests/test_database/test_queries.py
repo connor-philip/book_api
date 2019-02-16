@@ -1,20 +1,27 @@
 import unittest
-import queries
+import book_api.modules.database.queries as queries
+import book_api.modules.database.insertions as insertions
+from book_api.modules.database.db_connection import client
 
 
-class TestDoesBookExist(unittest.TestCase):
+class TestGetBookDictById(unittest.TestCase):
 
     def setUp(self):
-        pass
+        self.AddBook = insertions.AddBook("unit_test_book_title", ["unit_test_book_author"])
+        self.expectedId = "f6c118034b93e80d00c4a5d116a42c00"
 
     def tearDown(self):
-        pass
+        client.drop_database("bookdb")
 
-    def test_false_returned_when_book_does_not_exist(self):
-        pass
+    def test_dict_returned_when_id_does_exist(self):
+        returnedValue = queries.get_book_dict_by_id(self.expectedId)
 
-    def test_true_returned_when_book_does_exist(self):
-        pass
+        self.assertIsInstance(returnedValue, dict)
+
+    def test_none_returned_when_id_does_not_exist(self):
+        returnedValue = queries.get_book_dict_by_id("nonExistantDict")
+
+        self.assertIsNone(returnedValue)
 
 
 if __name__ == "__main__":

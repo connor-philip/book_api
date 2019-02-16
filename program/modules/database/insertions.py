@@ -5,8 +5,24 @@ import hashlib
 
 class AddBook:
 
-    def __init__(self):
-        pass
+    def __init__(self, title, authors, genres=[], tags=[], isbn10="", isbn13=""):
+        valid = self.check_if_book_dict_has_valid_values(title,
+                                                         authors,
+                                                         genres,
+                                                         tags,
+                                                         isbn10,
+                                                         isbn13)
+
+        if valid:
+            bookId = self.create_book_id(title, isbn10, isbn13)
+            bookDict = self.create_book_dict(bookId,
+                                             title,
+                                             authors,
+                                             genres,
+                                             tags,
+                                             isbn10,
+                                             isbn13)
+            self.add_book_to_db(bookDict)
 
     def format_type_error_message(self, description, expectedType, incorrectValue):
         actualType = type(incorrectValue)
@@ -52,7 +68,6 @@ class AddBook:
 
         # If error message is empty return True
         if errorMessage:
-            print(errorMessage)
             return False
         else:
             return True
@@ -78,6 +93,7 @@ class AddBook:
 
     def add_book_to_db(self, bookDict):
         if get_book_dict_by_id(bookDict["_id"]) is None:
-            bookdb.books.insert(bookDict)
+            bookdb.books.insert_one(bookDict)
+            return True
         else:
-            print("bookid already present")
+            return False

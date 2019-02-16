@@ -1,11 +1,16 @@
 import unittest
 import book_api.modules.database.insertions as insertions
+from book_api.modules.database.db_connection import client
+from book_api.modules.database.queries import get_book_dict_by_id
 
 
 class TestCheckIfBookDictHasValidValues(unittest.TestCase):
 
     def setUp(self):
-        self.AddBook = insertions.AddBook()
+        self.AddBook = insertions.AddBook("unit_test_book_title", ["unit_test_book_author"])
+
+    def tearDown(self):
+        client.drop_database("bookdb")
 
     def test_true_returned_on_success(self):
         result = self.AddBook.check_if_book_dict_has_valid_values("Book-Title",
@@ -102,7 +107,10 @@ class TestCheckIfBookDictHasValidValues(unittest.TestCase):
 class TestCreateBookId(unittest.TestCase):
 
     def setUp(self):
-        self.AddBook = insertions.AddBook()
+        self.AddBook = insertions.AddBook("unit_test_book_title", ["unit_test_book_author"])
+
+    def tearDown(self):
+        client.drop_database("bookdb")
 
     def test_string_is_returned(self):
         returnedValue = self.AddBook.create_book_id("title", "isbn10", "isbn13")
@@ -134,7 +142,10 @@ class TestCreateBookId(unittest.TestCase):
 class TestCreateBookDict(unittest.TestCase):
 
     def setUp(self):
-        self.AddBook = insertions.AddBook()
+        self.AddBook = insertions.AddBook("unit_test_book_title", ["unit_test_book_author"])
+
+    def tearDown(self):
+        client.drop_database("bookdb")
 
     def test_dict_is_returned(self):
         returnedValue = self.AddBook.create_book_dict("id", "title", ["author"])
@@ -167,19 +178,35 @@ class TestCreateBookDict(unittest.TestCase):
 class TestAddBookToDb(unittest.TestCase):
 
     def setUp(self):
-        pass
+        self.AddBook = insertions.AddBook("unit_test_book_title", ["unit_test_book_author"])
+        self.bookDict = {"_id": "id",
+                         "title": "title",
+                         "authors": ["author"],
+                         "genres": [],
+                         "tags": [],
+                         "isbn10": "",
+                         "isbn13": ""
+                         }
 
     def tearDown(self):
-        pass
+        client.drop_database("bookdb")
 
     def test_true_returned_on_success(self):
-        pass
+        returnedValue = self.AddBook.add_book_to_db(self.bookDict)
 
-    def test_false_returned_on_error(self):
-        pass
+        self.assertTrue(returnedValue)
+
+    def test_false_returned_when_id_already_exists(self):
+        self.AddBook.add_book_to_db(self.bookDict)
+        returnedValue = self.AddBook.add_book_to_db(self.bookDict)
+
+        self.assertFalse(returnedValue)
 
     def test_book_added_to_db(self):
-        pass
+        self.AddBook.add_book_to_db(self.bookDict)
+        returnedValue = get_book_dict_by_id("id")
+
+        self.assertEqual(self.bookDict, returnedValue)
 
 
 if __name__ == "__main__":
