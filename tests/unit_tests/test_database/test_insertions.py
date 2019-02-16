@@ -93,7 +93,7 @@ class TestCheckIfBookDictHasValidValues(unittest.TestCase):
         self.assertFalse(result)
 
 
-class TestCreateNewBookDictWithSelectedKeys(unittest.TestCase):
+class TestCreateBookDict(unittest.TestCase):
 
     def setUp(self):
         pass
@@ -108,7 +108,7 @@ class TestCreateNewBookDictWithSelectedKeys(unittest.TestCase):
         pass
 
 
-class TestCreateAndAppendBookId(unittest.TestCase):
+class TestCreateBookId(unittest.TestCase):
 
     def setUp(self):
         pass
@@ -116,7 +116,7 @@ class TestCreateAndAppendBookId(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_id_is_appened_to_book_dict(self):
+    def test_id_is_created(self):
         pass
 
 

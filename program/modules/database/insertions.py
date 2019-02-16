@@ -54,11 +54,11 @@ class AddBook:
         else:
             return True
 
-    def create_new_book_dict_with_selected_keys(self, newBookDict):
+    def create_book_id(self, newBookDict):
+        # md5(title + isbn-10 + isbn-13)
         pass
 
-    def create_and_append_book_id(self, newBookDict):
-        # md5(title + isbn-10 + isbn-13)
+    def create_book_dict(self, newBookDict):
         pass
 
     def add_book_to_db(self, bookDict):
