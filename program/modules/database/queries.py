@@ -1,5 +1,5 @@
-from connections import db
+from book_api.modules.database.db_connection import bookdb as bookdb
 
 
-def does_book_exist(_id):
-    pass
+def get_book_dict_by_id(_id):
+    return bookdb.books.find_one({"_id": _id})
