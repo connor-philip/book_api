@@ -1,3 +1,4 @@
+from book_api.modules.database.db_connection import db as db
 import hashlib
 
 
@@ -63,7 +64,7 @@ class AddBook:
 
     def create_book_dict(self, bookId, title, authors, genres=[], tags=[], isbn10="", isbn13=""):
         bookDict = {
-            "id": bookId,
+            "_id": bookId,
             "title": title,
             "authors": authors,
             "genres": genres,
@@ -74,5 +75,5 @@ class AddBook:
 
         return bookDict
 
-    def add_book_to_db(self):
-        pass
+    def add_book_to_db(self, bookDict):
+        db.books.insert(bookDict)
