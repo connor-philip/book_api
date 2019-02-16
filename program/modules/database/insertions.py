@@ -1,4 +1,5 @@
-from book_api.modules.database.db_connection import db as db
+from book_api.modules.database.db_connection import bookdb as bookdb
+from book_api.modules.database.queries import get_book_dict_by_id
 import hashlib
 
 
@@ -76,4 +77,7 @@ class AddBook:
         return bookDict
 
     def add_book_to_db(self, bookDict):
-        db.books.insert(bookDict)
+        if get_book_dict_by_id(bookDict["_id"]) is None:
+            bookdb.books.insert(bookDict)
+        else:
+            print("bookid already present")
