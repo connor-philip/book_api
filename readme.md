@@ -18,5 +18,7 @@ To tear down the environment, use `vagrant destroy`
 #### Locally
 I haven't added a script run set up a dev environment locally. However all the script you need are in the setup directory. These scripts are designed to run in a Linux(Ubuntu) environment so if you're using another OS you'll need to take the appropriate actions for your OS.
 
+On another note, there's docker containers for running the application and it's tests, so just using docker may be enough.
+
 Take a look in the Vagrantfile to see the steps it takes, and run the scripts (in order\*)
 \* Not all the scripts need to be run in order, but it's required to run most of the docker related scripts in the order within the Vagrantfile
