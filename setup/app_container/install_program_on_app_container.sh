@@ -3,8 +3,8 @@
 # NOTE: The app is already installed on docker build
 # This just provides a way to reinstall without rebuilding the container
 
-CONTAINER_SCRIPTS_DIR="${0%/*}"
-SETUP_DIR=$CONTAINER_SCRIPTS_DIR/..
+APP_CONTAINER_DIR="${0%/*}"
+SETUP_DIR=$APP_CONTAINER_DIR/..
 BOOK_API_DIR=$SETUP_DIR/..
 
 cd $BOOK_API_DIR

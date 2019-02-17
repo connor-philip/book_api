@@ -7,9 +7,8 @@ if [[ $container == "app" ]]; then
     docker ps | grep book_api_app && docker kill $fullContainerName
     docker ps -a | grep book_api_app && docker rm $fullContainerName
 elif [[ $container == "db" ]]; then
-    echo $fullContainerName
-    # docker ps | grep dbserver && docker kill $fullContainerName
-    # docker ps -a | grep dbserver && docker rm $fullContainerName
+    docker ps | grep book_api_db && docker kill $fullContainerName
+    docker ps -a | grep book_api_db && docker rm $fullContainerName
 else
     echo "Invalid parameter supplied."
     echo "Run the script with adding either app or db as an argument"
