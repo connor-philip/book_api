@@ -40,4 +40,16 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, name: "run_db_container.sh",
         path: "setup/db_container/run_db_container.sh",
         upload_path: "/vagrant/book_api/setup/db_container/run_db_container.sh"
+
+  # Run Unit Tests
+  config.vm.provision :shell, name: "run_db_container.sh",
+        path: "setup/db_container/run_db_container.sh",
+        upload_path: "/vagrant/book_api/setup/db_container/run_db_container.sh",
+        args: " unit_test"
+  config.vm.provision :shell, name: "build_unit_test_container.sh",
+        path: "setup/unit_test_container/build_unit_test_container.sh",
+        upload_path: "/vagrant/book_api/setup/unit_test_container/build_unit_test_container.sh"
+  config.vm.provision :shell, name: "run_unit_test_container.sh",
+        path: "setup/unit_test_container/run_unit_test_container.sh",
+        upload_path: "/vagrant/book_api/setup/unit_test_container/run_unit_test_container.sh"
 end
