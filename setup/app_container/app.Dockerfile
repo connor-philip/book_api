@@ -4,14 +4,15 @@ LABEL maintainer="connor.philip12@hotmail.com"
 USER root
 ARG databaseIP
 
-COPY setup/setup_scripts/ /var/setup/setup_scripts
-COPY program /var/www/book_api
+COPY setup/setup_scripts/ /var/www/book_api/setup/setup_scripts
+COPY setup.py /var/www/book_api/setup.py
+COPY program /var/www/book_api/program
 COPY setup/app_container/book_api.conf /etc/apache2/sites-available/
 
 # Install all required packages from apt using the setup scripts
-RUN ["bash", "/var/setup/setup_scripts/apt_install_apache.sh"]
-RUN ["bash", "/var/setup/setup_scripts/apt_install_python3.sh"]
-RUN ["bash", "/var/setup/setup_scripts/pip_install_packages.sh"]
+RUN ["bash", "/var/www/book_api/setup/setup_scripts/apt_install_apache.sh"]
+RUN ["bash", "/var/www/book_api/setup/setup_scripts/apt_install_python3.sh"]
+RUN ["bash", "/var/www/book_api/setup/setup_scripts/pip_install_packages.sh"]
 
 # Env variables
 ENV databaseIP $databaseIP
