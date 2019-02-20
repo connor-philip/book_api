@@ -8,6 +8,8 @@ import hashlib
 class AddBook:
 
     def __init__(self, title, authors, genres=[], tags=[], isbn10="", isbn13=""):
+        self.logger = lc.get_logger("databaseModuleLogger")
+
         valid = self.check_if_book_dict_has_valid_values(title,
                                                          authors,
                                                          genres,
@@ -26,19 +28,8 @@ class AddBook:
                                              isbn13)
             self.add_book_to_db(bookDict)
 
-    def format_type_error_message(self, description, expectedType, incorrectValue):
-        actualType = type(incorrectValue)
-        errorMessage = "\n{} is not a {}:\n\t{}\nInstead type is: {}".format(description,
-                                                                             expectedType,
-                                                                             incorrectValue,
-                                                                             actualType)
-        return errorMessage
-
-    def unexpected_length_error_message(self, description, expectedLength, incorrectValue):
-        errorMessage = "{} does not have the expected length of {}\nGot: {}".format(description,
-                                                                                    expectedLength,
-                                                                                    incorrectValue)
-        return errorMessage
+    def __del__(self):
+        lc.close_log(self.logger)
 
     def check_if_book_dict_has_valid_values(self, title, authors, genres=[], tags=[], isbn10="", isbn13=""):
         errorMessage = ""
@@ -70,6 +61,7 @@ class AddBook:
 
         # If error message is empty return True
         if errorMessage:
+            self.logger.error(errorMessage)
             return False
         else:
             return True
@@ -98,4 +90,5 @@ class AddBook:
             bookdb.books.insert_one(bookDict)
             return True
         else:
+            self.logger.warning("Tried to add id {} to db but it already exists".format(bookDict["_id"]))
             return False
