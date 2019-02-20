@@ -1,5 +1,7 @@
 from book_api.modules.database.db_connection import bookdb as bookdb
 from book_api.modules.database.queries import get_book_dict_by_id
+import book_api.modules.ba_logging.message_formatters as mf
+import book_api.modules.ba_logging.log_controller as lc
 import hashlib
 
 
@@ -44,7 +46,7 @@ class AddBook:
         # Check parameter types
         for strParam in [title, isbn10, isbn13]:
             if isinstance(strParam, str) is False:
-                errorMessageLine = self.format_type_error_message(strParam, "str", strParam)
+                errorMessageLine = mf.format_type_error_message(strParam, "str", strParam)
                 errorMessage = "{}\n{}".format(errorMessage, errorMessageLine)
 
         for listParam in [genres, authors, tags]:
@@ -52,18 +54,18 @@ class AddBook:
                 for strItem in listParam:
                     if isinstance(strItem, str) is False:
                         description = "{} list item".format(listParam)
-                        errorMessageLine = self.format_type_error_message(description, "str", strItem)
+                        errorMessageLine = mf.format_type_error_message(description, "str", strItem)
                         errorMessage = "{}\n{}".format(errorMessage, errorMessageLine)
             else:
-                errorMessageLine = self.format_type_error_message(listParam, "list", listParam)
+                errorMessageLine = mf.format_type_error_message(listParam, "list", listParam)
                 errorMessage = "{}\n{}".format(errorMessage, errorMessageLine)
 
         # Ensure ISBN have correct length
         if isbn10 and len(isbn10) != 10:
-            errorMessageLine = self.unexpected_length_error_message("ISBN10", "10", isbn10)
+            errorMessageLine = mf.unexpected_length_error_message("ISBN10", "10", isbn10)
             errorMessage = "{}\n{}".format(errorMessage, errorMessageLine)
         if isbn13 and len(isbn13) != 13:
-            errorMessageLine = self.unexpected_length_error_message("ISBN13", "13", isbn13)
+            errorMessageLine = mf.unexpected_length_error_message("ISBN13", "13", isbn13)
             errorMessage = "{}\n{}".format(errorMessage, errorMessageLine)
 
         # If error message is empty return True

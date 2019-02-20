@@ -5,5 +5,7 @@ setup(name="book_api_modules",
       author="Connor Philip",
       author_email="connorphilip12@hotmail.com",
       package_dir={"book_api": "program"},
-      packages=["book_api.modules.database"]
+      packages=["book_api.modules.database",
+                "book_api.modules.ba_logging"
+                ]
       )
