@@ -16,3 +16,19 @@ def get_books():
     booksJson = jsonify(list(cursorObject))
 
     return booksJson
+
+
+@app.route("/api/authors/", methods=['GET'])
+def get_authors():
+    cursorObject = queries.get_authors()
+    authorsJson = jsonify(list(cursorObject))
+
+    return authorsJson
+
+
+@app.route("/api/genres/", methods=['GET'])
+def get_genres():
+    cursorObject = queries.get_genres()
+    genresJson = jsonify(list(cursorObject))
+
+    return genresJson
