@@ -7,7 +7,7 @@ WORKDIR /app
 ARG databaseIP
 
 ENV databaseIP $databaseIP
-ENV PYTHONPATH /app
+ENV book_api_logs "/var/log/book_api_logs/"
 
 COPY setup/setup_scripts/ /app/book_api/setup/setup_scripts
 COPY setup.py /app/book_api/setup.py
