@@ -2,10 +2,9 @@ import logging
 import logging.config
 from book_api.modules.ba_logging.log_config import logConfig
 
-logging.config.dictConfig(logConfig)
-
 
 def get_logger(logger):
+    logging.config.dictConfig(logConfig)
     return logging.getLogger(logger)
 
 

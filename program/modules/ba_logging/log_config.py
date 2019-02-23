@@ -1,10 +1,13 @@
 import os
 from datetime import date
 
-CURRENTFILEPATH = os.path.dirname(os.path.realpath(__file__))
-DATETODAY = date.today()
-DEFAULTLOGFILENAME = "{}.log".format(DATETODAY)
-DEFAULTLOGPATH = os.path.join(CURRENTFILEPATH, DEFAULTLOGFILENAME)
+LOGBASEPATH = os.environ['book_api_logs']
+DEFAULTLOGFILENAME = "{}.log".format(date.today())
+DEFAULTLOGFILEPATH = os.path.join(LOGBASEPATH, DEFAULTLOGFILENAME)
+
+if os.path.exists(LOGBASEPATH) is False:
+    os.mkdir(LOGBASEPATH)
+
 
 logConfig = {
     "version": 1,
@@ -18,12 +21,12 @@ logConfig = {
     "handlers": {
         "default": {
             "formatter": "standard",
-            "filename": DEFAULTLOGPATH,
+            "filename": DEFAULTLOGFILEPATH,
             "class": "logging.FileHandler",
         },
         "databaseModuleHandler": {
             "formatter": "standard",
-            "filename": os.path.join(CURRENTFILEPATH, "book_api_database_{}".format(DEFAULTLOGFILENAME)),
+            "filename": os.path.join(LOGBASEPATH, "ba_database_{}".format(DEFAULTLOGFILENAME)),
             "class": "logging.FileHandler",
         }
     },
