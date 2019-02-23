@@ -8,6 +8,7 @@ import hashlib
 class AddBook:
 
     def __init__(self, title, authors, genres=[], tags=[], isbn10="", isbn13=""):
+        self.success = None
         self.logger = lc.get_logger("databaseModuleLogger")
 
         valid = self.check_if_book_dict_has_valid_values(title,
@@ -18,8 +19,8 @@ class AddBook:
                                                          isbn13)
 
         if valid:
-            bookId = self.create_book_id(title, isbn10, isbn13)
-            bookDict = self.create_book_dict(bookId,
+            self.bookId = self.create_book_id(title, isbn10, isbn13)
+            bookDict = self.create_book_dict(self.bookId,
                                              title,
                                              authors,
                                              genres,
@@ -88,7 +89,9 @@ class AddBook:
     def add_book_to_db(self, bookDict):
         if get_book_dict_by_id(bookDict["_id"]) is None:
             bookdb.books.insert_one(bookDict)
-            return True
+            self.success = True
         else:
             self.logger.warning("Tried to add id {} to db but it already exists".format(bookDict["_id"]))
-            return False
+            self.success = False
+
+        return self.success

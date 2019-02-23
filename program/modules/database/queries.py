@@ -9,7 +9,7 @@ def get_all_books():
     return bookdb.books.find({})
 
 
-def get_authors():
+def get_all_authors():
     authorList = []
     cursor = bookdb.books.find({}, {"authors": 1, "_id": 0})
 
@@ -23,7 +23,7 @@ def get_authors():
     return authorList
 
 
-def get_genres():
+def get_all_genres():
     genreList = []
     cursor = bookdb.books.find({}, {"genres": 1, "_id": 0})
 
