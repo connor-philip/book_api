@@ -33,11 +33,17 @@ def add_book():
 
     returnJson = {
         "success": ab.success,
+        "message": ab.message,
         "book_id": ab.bookId,
         "bookObject": bookDict
     }
 
-    return jsonify(returnJson)
+    if ab.success is True:
+        returnStatus = 201
+    else:
+        returnStatus = 400
+
+    return (jsonify(returnJson), returnStatus)
 
 
 @app.route("/api/books/<bookId>", methods=["GET"])
