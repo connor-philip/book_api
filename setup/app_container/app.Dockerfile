@@ -2,6 +2,7 @@ FROM ubuntu:16.04
 LABEL maintainer="connor.philip12@hotmail.com"
 
 USER root
+
 ARG databaseIP
 
 COPY setup/setup_scripts/ /var/www/book_api/setup/setup_scripts
@@ -17,6 +18,11 @@ RUN ["bash", "/var/www/book_api/setup/setup_scripts/pip_install_packages.sh"]
 # Env variables
 ENV databaseIP $databaseIP
 ENV book_api_logs "/var/log/book_api_logs/"
+
+# Create log file and set perms
+RUN mkdir /var/log/book_api_logs/
+RUN usermod -a -G root www-data
+RUN chmod 770 /var/log/book_api_logs/
 
 # Disable default conf, and enable book_api conf
 RUN a2dissite 000-default
