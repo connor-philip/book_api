@@ -3,7 +3,7 @@ Exactly what it sounds like, a book API built for practise.
 
 ## Set Up
 For a dev environment you can run it locally or use the Vagrantfile provided.
-See /setup/readme.md for notes on the different environments used.
+See /environment/readme.md for notes on the different environments used.
 
 #### Vagrant
 Make sure you have [Vagrant](https://www.vagrantup.com/downloads.html "Download Vagrant here; https://www.vagrantup.com/downloads.html") installed.
