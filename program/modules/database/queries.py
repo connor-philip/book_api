@@ -14,13 +14,16 @@ def get_all_authors():
     cursor = bookdb.books.find({}, {"authors": 1, "_id": 0})
 
     for item in cursor:
-        print(item)
         if isinstance(item["authors"], list):
             for author in item["authors"]:
                 if author not in authorList:
                     authorList.append(author)
 
     return authorList
+
+
+def get_books_by_author(author):
+    return bookdb.books.find({"authors": author}, {"title": 1, "_id": 1})
 
 
 def get_all_genres():
@@ -34,3 +37,7 @@ def get_all_genres():
                     genreList.append(genre)
 
     return genreList
+
+
+def get_books_in_genre(genre):
+    return bookdb.books.find({"genres": genre}, {"title": 1, "_id": 1})

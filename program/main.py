@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, abort
 import book_api.modules.database.queries as queries
 import book_api.modules.database.insertions as insertions
 app = Flask("book_api_app")
@@ -57,14 +57,32 @@ def get_book(bookId):
 @app.route("/api/authors/", methods=["GET"])
 def get_authors():
     cursorObject = queries.get_all_authors()
-    authorsJson = jsonify(list(cursorObject))
+    authorsJson = jsonify(cursorObject)
 
     return authorsJson
+
+
+@app.route("/api/authors/<author>", methods=['GET'])
+def get_authors_books(author):
+    return_obj = list(queries.get_books_by_author(author))
+    if not return_obj:
+        abort(404)
+
+    return jsonify(return_obj)
 
 
 @app.route("/api/genres/", methods=["GET"])
 def get_genres():
     cursorObject = queries.get_all_genres()
-    genresJson = jsonify(list(cursorObject))
+    genresJson = jsonify(cursorObject)
 
     return genresJson
+
+
+@app.route("/api/genres/<genre>", methods=['GET'])
+def get_genres_books(genre):
+    return_obj = list(queries.get_books_in_genre(genre))
+    if not return_obj:
+        abort(404)
+
+    return jsonify(return_obj)
