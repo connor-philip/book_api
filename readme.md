@@ -20,5 +20,4 @@ I haven't added a script run set up a dev environment locally. However all the s
 
 On another note, there's docker containers for running the application and it's tests, so just using docker may be enough.
 
-Take a look in the Vagrantfile to see the steps it takes, and run the scripts (in order\*)
-\* Not all the scripts need to be run in order, but it's required to run most of the docker related scripts in the order within the Vagrantfile
+Take a look in the Vagrantfile to see the steps it takes, and run the scripts.
