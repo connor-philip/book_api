@@ -7,6 +7,6 @@ UNIT_TEST_MONGO_CONTAINER_IP=$(grep unitTestMongoContainerIp $BOOK_API_DIR/confi
 
 cd $BOOK_API_DIR
 
-docker build --build-arg databaseIP=$UNIT_TEST_MONGO_CONTAINER_IP -t book_api_unit_tests -f setup/unit_test_container/unit_test.Dockerfile .
+docker build --build-arg databaseIP=$UNIT_TEST_MONGO_CONTAINER_IP -t book_api_unit_tests -f environment/unit_test_container/unit_test.Dockerfile .
 
 cd -

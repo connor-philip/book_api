@@ -7,6 +7,6 @@ MONGO_CONTAINER_IP=$(grep devMongoContainerIp $BOOK_API_DIR/config.py | grep -Po
 
 cd $BOOK_API_DIR
 
-docker build --build-arg databaseIP=$MONGO_CONTAINER_IP --tag book_api_app_server -f setup/app_container/app.Dockerfile .
+docker build --build-arg databaseIP=$MONGO_CONTAINER_IP --tag book_api_app_server -f environment/app_container/app.Dockerfile .
 
 cd -

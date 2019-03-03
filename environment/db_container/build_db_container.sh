@@ -6,6 +6,6 @@ BOOK_API_DIR=$SETUP_DIR/..
 
 cd $BOOK_API_DIR
 
-docker build --tag book_api_db_server -f setup/db_container/db.Dockerfile .
+docker build --tag book_api_db_server -f environment/db_container/db.Dockerfile .
 
 cd -
