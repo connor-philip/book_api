@@ -17,5 +17,5 @@ There's a optional [Vagrant](https://www.vagrantup.com/downloads.html "https://w
 
 If you choose not to use Vagrant all that you really need is a terminal that can run bash scripts ([such as git bash if on windows](https://gitforwindows.org/index.html "https://gitforwindows.org/index.html")) and [Docker](https://www.docker.com/get-started "https://www.docker.com/get-started").
 
-See environment/readme.md for notes on the different environments used.
+See [environment/readme.md](https://github.com/connor-philip/book_api/blob/master/environment/readme.md) for notes on the different environments used.
 
