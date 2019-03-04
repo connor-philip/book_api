@@ -1,23 +1,21 @@
 # book_api
-Exactly what it sounds like, a book API built for practise.
+Exactly what it sounds like, a book API. Built for practise.
+
+Python3. Apache. MongoDB.
 
 ## Set Up
-For a dev environment you can run it locally or use the Vagrantfile provided.
-See /environment/readme.md for notes on the different environments used.
 
-#### Vagrant
-Make sure you have [Vagrant](https://www.vagrantup.com/downloads.html "Download Vagrant here; https://www.vagrantup.com/downloads.html") installed.
-Once it's installed, cd to the book_api dir in a terminal and enter: `vagrant up`. This will create a dev environment for you. If you're interested in the steps, take a look at the Vagrantfile.
+#### Application
+To run the application there's docker files to run the different aspects. There's bash scripts to control these within the environment dir and each container's directory.
 
-To connect to the environment in a terminal use `vagrant ssh`
+If you choose to run Vagrant then these containers will be built and run on provisioning the vagrant VM.
 
-You can also connect to the server through by visiting the IP of the vm in a browser, set to 200.2.2.2 by default in the Vagrantfile
+After starting the application, you can connect to the api by going localhost in a browser (or 200.2.2.2 if using Vagrant).
 
-To tear down the environment, use `vagrant destroy`
+#### Dev environment
+There's a optional [Vagrant](https://www.vagrantup.com/downloads.html "https://www.vagrantup.com/downloads.html") environment available for a dev environment so that you won't need to install any other software on your host machine.
 
-#### Locally
-I haven't added a script run set up a dev environment locally. However all the script you need are in the setup directory. These scripts are designed to run in a Linux(Ubuntu) environment so if you're using another OS you'll need to take the appropriate actions for your OS.
+If you choose not to use Vagrant all that you really need is a terminal that can run bash scripts ([such as git bash if on windows](https://gitforwindows.org/index.html "https://gitforwindows.org/index.html")) and [Docker](https://www.docker.com/get-started "https://www.docker.com/get-started").
 
-On another note, there's docker containers for running the application and it's tests, so just using docker may be enough.
+See environment/readme.md for notes on the different environments used.
 
-Take a look in the Vagrantfile to see the steps it takes, and run the scripts.

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # NOTE: The app is already installed on docker build
-# This just provides a way to reinstall without rebuilding the container
+# This just provides a way to reinstall without having to rebuilding the container
 
 APP_CONTAINER_DIR="${0%/*}"
 SETUP_DIR=$APP_CONTAINER_DIR/..
