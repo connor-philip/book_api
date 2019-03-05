@@ -3,8 +3,8 @@
 environment=$1
 
 DB_CONTAINER_DIR="${0%/*}"
-SETUP_DIR=$DB_CONTAINER_DIR/..
-BOOK_API_DIR=$SETUP_DIR/..
+ENVIRONMENT_DIR=$DB_CONTAINER_DIR/..
+BOOK_API_DIR=$ENVIRONMENT_DIR/..
 DEV_MONGO_CONTAINER_IP=$(grep devMongoContainerIp $BOOK_API_DIR/config.py | grep -Po '((?:\d{1,3}\.){3}\d{1,3})')
 UNIT_TEST_MONGO_CONTAINER_IP=$(grep unitTestMongoContainerIp $BOOK_API_DIR/config.py | grep -Po '((?:\d{1,3}\.){3}\d{1,3})')
 
