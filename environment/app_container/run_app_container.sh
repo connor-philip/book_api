@@ -6,6 +6,6 @@ BOOK_API_DIR=$ENVIRONMENT_DIR/..
 
 cd $BOOK_API_DIR
 
-docker run --network=host  --name book_api_app -d -P book_api_app_server
+docker run --net booknet --publish 80:80 --name book_api_app -d -P book_api_app_server
 
 cd -

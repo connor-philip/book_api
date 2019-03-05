@@ -3,7 +3,9 @@
 ## App Container
 * Building and running the app.Dockerfile sets up an apache server which hosts the api.
 * The devMongoContainerIp from the config is added as an environment variable to connect to the DB.
-* The container runs on the host's network.
+* The container runs on a created docker network called booknet.
+* No assigned IP Address.
+* port forwarding 80:80.
 * The python modules are pip installed.
 
 
