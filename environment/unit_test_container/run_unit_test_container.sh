@@ -8,6 +8,6 @@ UNIT_TEST_DIR=$BOOK_API_DIR/tests/unit/tests
 cd $BOOK_API_DIR
 ABSOLUTE_UNIT_TEST_DIR=$(pwd)
 
-docker run --net booknet -l book_api_unit_tests_container -v $ABSOLUTE_UNIT_TEST_DIR/:/app book_api_unit_tests
+docker run --net booknet --label book_api_unit_tests_container --volume $ABSOLUTE_UNIT_TEST_DIR/:/app book_api_unit_tests
 
 cd -
