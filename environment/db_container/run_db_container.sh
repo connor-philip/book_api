@@ -5,8 +5,8 @@ environment=$1
 DB_CONTAINER_DIR="${0%/*}"
 ENVIRONMENT_DIR=$DB_CONTAINER_DIR/..
 BOOK_API_DIR=$ENVIRONMENT_DIR/..
-DEV_MONGO_CONTAINER_IP=$(grep devMongoContainerIp $BOOK_API_DIR/build_config.txt | grep -Po '((?:\d{1,3}\.){3}\d{1,3})')
-UNIT_TEST_MONGO_CONTAINER_IP=$(grep unitTestMongoContainerIp $BOOK_API_DIR/build_config.txt | grep -Po '((?:\d{1,3}\.){3}\d{1,3})')
+DEV_MONGO_CONTAINER_IP=$(awk '/devMongoContainerIp/ {print $2}' $BOOK_API_DIR/build_config.txt)
+UNIT_TEST_MONGO_CONTAINER_IP=$(awk '/unitTestMongoContainerIp/ {print $2}' $BOOK_API_DIR/build_config.txt)
 
 cd $BOOK_API_DIR
 
