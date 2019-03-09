@@ -28,5 +28,7 @@ RUN chmod 770 /var/log/book_api_logs/
 RUN a2dissite 000-default
 RUN a2ensite book_api
 
+EXPOSE 80
+
 # Start the apache2 service
 ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]

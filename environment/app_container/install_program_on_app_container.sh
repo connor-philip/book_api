@@ -4,8 +4,8 @@
 # This just provides a way to reinstall without having to rebuilding the container
 
 APP_CONTAINER_DIR="${0%/*}"
-SETUP_DIR=$APP_CONTAINER_DIR/..
-BOOK_API_DIR=$SETUP_DIR/..
+ENVIRONMENT_DIR=$APP_CONTAINER_DIR/..
+BOOK_API_DIR=$ENVIRONMENT_DIR/..
 
 cd $BOOK_API_DIR
 

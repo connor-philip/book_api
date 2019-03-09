@@ -1,12 +1,12 @@
 #!/bin/bash
 
 APP_CONTAINER_DIR="${0%/*}"
-SETUP_DIR=$APP_CONTAINER_DIR/..
-BOOK_API_DIR=$SETUP_DIR/..
-MONGO_CONTAINER_IP=$(grep devMongoContainerIp $BOOK_API_DIR/config.py | grep -Po '((?:\d{1,3}\.){3}\d{1,3})')
+ENVIRONMENT_DIR=$APP_CONTAINER_DIR/..
+BOOK_API_DIR=$ENVIRONMENT_DIR/..
+MONGO_CONTAINER_IP=$(awk '/devMongoContainerIp/ {print $2}' $BOOK_API_DIR/build_config.txt)
 
 cd $BOOK_API_DIR
 
-docker build --build-arg databaseIP=$MONGO_CONTAINER_IP --tag book_api_app_server -f environment/app_container/app.Dockerfile .
+docker build --build-arg databaseIP=$MONGO_CONTAINER_IP --tag book_api_app_server --file environment/app_container/app.Dockerfile .
 
 cd -
