@@ -15,7 +15,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :shell, name: "pip_install_packages.sh",
         path: "environment/setup_scripts/pip_install_packages.sh",
-        upload_path: "/vagrant/book_api/environment/setup_scripts/pip_install_packages.sh"
+        upload_path: "/vagrant/book_api/environment/setup_scripts/pip_install_packages.sh",
+        args: "dev_environment"
 
   # Env setup
   config.vm.provision :shell, name: "create_dev_env_variable.sh",

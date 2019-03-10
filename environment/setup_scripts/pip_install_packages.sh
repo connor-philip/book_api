@@ -6,9 +6,10 @@ BOOK_API_DIR=$ENVIRONMENT_DIR/..
 
 cd $BOOK_API_DIR
 
-pip3 install .
-pip3 install pymongo
-pip3 install flask
-pip3 install behave
+if [[ $1 == "dev_environment" ]]; then
+        pip3 install -r dev_requirements.txt
+else
+    pip3 install -r requirements.txt
+fi
 
 cd -

@@ -9,6 +9,7 @@ COPY environment/setup_scripts/ /var/www/book_api/environment/setup_scripts
 COPY setup.py /var/www/book_api/setup.py
 COPY program /var/www/book_api/program
 COPY environment/app_container/book_api.conf /etc/apache2/sites-available/
+COPY environment/requirement_files/app_requirements.txt /var/www/book_api/requirements.txt
 
 # Install all required packages from apt using the setup scripts
 RUN ["bash", "/var/www/book_api/environment/setup_scripts/apt_install_apache.sh"]
