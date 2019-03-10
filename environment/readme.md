@@ -12,7 +12,7 @@
 ## DB Container
 * Building and running the db.Dockerfile sets up a mongodb server.
 * Running the run_db_container.sh script without arugment uses the devMongoContainerIp as the container's IP.
-* If you add the "unit_tests" arg when calling the run_db_container.sh then it'll use the unitTestMongoContainerIp IP.
+* If you add the "unit_tests" arg when calling the run_db_container.sh then it'll use the testMongoContainerIp IP.
 * The container runs on a created docker network called booknet.
 
 
