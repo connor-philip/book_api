@@ -1,8 +1,17 @@
 Feature: Test the books endpoint of the book_api
 
-Scenario: api/books endpoint returns JSON
-    Given I go to the "api/books" endpoint
+Scenario Outline: These endpoints serve json
+    Given I go to the <Endpoint> endpoint
     Then I receive a JSON response
+
+    Examples:
+    | Endpoint                                      |
+    | "api/books"                                   |
+    | "api/books/3ce55a9fb44a345f712b1360c2bf9d29"  |
+    | "api/authors"                                 |
+    | "api/authors/Albert Camus"                    |
+    | "api/genres"                                  |
+    | "api/genres/fiction"                          |
 
 
 Scenario Outline: These endpoints give the expected data
