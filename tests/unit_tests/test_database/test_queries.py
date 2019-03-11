@@ -60,6 +60,29 @@ class TestGetAllBooks(unittest.TestCase):
 
         self.assertEqual(expectedValue, returnedValueDict)
 
+    def test_returned_value_is_sorted_by_id(self):
+        insertions.AddBook("title2", ["author2"])
+        returnedValue = list(queries.get_all_books())
+        expectedValue = [{
+            "_id": "3f5468de0bfbe111586f7649a3c8d115",
+            "tags": [],
+            "authors": ["author1"],
+            "genres": [],
+            "isbn13": "",
+            "title": "title1",
+            "isbn10": ""},
+            {
+            "_id": "5d1cb9970fd74ed9f56a867a785a358f",
+            "tags": [],
+            "authors": ["author2"],
+            "genres": [],
+            "isbn13": "",
+            "title": "title2",
+            "isbn10": ""
+        }]
+
+        self.assertEqual(expectedValue, returnedValue)
+
 
 class TestGetAllAuthors(unittest.TestCase):
 
@@ -94,6 +117,13 @@ class TestGetAllAuthors(unittest.TestCase):
 
         self.assertEqual(expectedValue, returnedValueLength)
 
+    def test_returned_value_is_sorted_by_id(self):
+        insertions.AddBook("title2", ["author2"])
+        returnedValue = queries.get_all_authors()
+        expectedValue = ["author1", "author2"]
+
+        self.assertEqual(expectedValue, returnedValue)
+
 
 class TestGetBooksByAuthor(unittest.TestCase):
 
@@ -120,6 +150,19 @@ class TestGetBooksByAuthor(unittest.TestCase):
         expectedValue = {"_id": "3f5468de0bfbe111586f7649a3c8d115", "title": "title1"}
 
         self.assertEqual(expectedValue, firstIndexValue)
+
+    def test_returned_value_is_sorted_by_id(self):
+        insertions.AddBook("title1_2", ["author1"])
+        returnedValue = list(queries.get_books_by_author("author1"))
+        expectedValue = [{
+            "_id": "3f5468de0bfbe111586f7649a3c8d115",
+            "title": "title1"},
+            {
+            "_id": "910b9d218806f78cbaeb06c975b7400a",
+            "title": "title1_2"
+        }]
+
+        self.assertEqual(expectedValue, returnedValue)
 
 
 class TestGetAllGenres(unittest.TestCase):
@@ -155,6 +198,13 @@ class TestGetAllGenres(unittest.TestCase):
 
         self.assertEqual(expectedValue, returnedValueLength)
 
+    def test_returned_value_is_sorted_by_id(self):
+        insertions.AddBook("title2", ["author2"], genres=["genre3", "genre4"])
+        returnedValue = queries.get_all_genres()
+        expectedValue = ["genre1", "genre2", "genre3", "genre4"]
+
+        self.assertEqual(expectedValue, returnedValue)
+
 
 class TestGetBooksInGenre(unittest.TestCase):
 
@@ -181,6 +231,19 @@ class TestGetBooksInGenre(unittest.TestCase):
         expectedValue = {"_id": "3f5468de0bfbe111586f7649a3c8d115", "title": "title1"}
 
         self.assertEqual(expectedValue, firstIndexValue)
+
+    def test_returned_value_is_sorted_by_id(self):
+        insertions.AddBook("title2", ["author2"], genres=["genre1"])
+        returnedValue = list(queries.get_books_in_genre("genre1"))
+        expectedValue = [{
+            "_id": "3f5468de0bfbe111586f7649a3c8d115",
+            "title": "title1"},
+            {
+            "_id": "5d1cb9970fd74ed9f56a867a785a358f",
+            "title": "title2"
+        }]
+
+        self.assertEqual(expectedValue, returnedValue)
 
 
 if __name__ == "__main__":
