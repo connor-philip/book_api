@@ -1,4 +1,7 @@
 dockerSubNet: 172.18.0.0
 devMongoContainerIp: 172.18.0.22
+
 testMongoContainerIp: 172.18.0.23
+testAppContainerIp: 200.2.2.2
+
 bookApilogPath: /var/log/book_api_logs/

@@ -4,9 +4,9 @@ LABEL maintainer="connor.philip12@hotmail.com"
 USER root
 
 WORKDIR /app
-ARG databaseIP
+ARG testServerIP
 
-ENV databaseIP $databaseIP
+ENV testServerIP $testServerIP
 
 COPY environment/setup_scripts/ /app/book_api/environment/setup_scripts
 COPY environment/requirement_files/feature_test_requirements.txt /app/book_api/requirements.txt

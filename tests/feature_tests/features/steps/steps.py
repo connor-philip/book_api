@@ -7,7 +7,7 @@ import os
 
 @behave.given("I go to the \"{endpoint}\" endpoint")
 def go_to_endpoint(context, endpoint):
-    requestUrl = "http://{}/{}".format("200.2.2.2", parse.quote(endpoint))
+    requestUrl = "{}/{}".format(context.apiUrl, parse.quote(endpoint))
     response = request.urlopen(requestUrl)
 
     context.endpointResponse = response
