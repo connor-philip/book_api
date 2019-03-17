@@ -6,10 +6,8 @@ BOOK_API_DIR=$ENVIRONMENT_DIR/..
 
 cd $BOOK_API_DIR
 
-if [[ $1 == "dev_environment" ]]; then
-        pip3 install -r dev_requirements.txt
-else
-    pip3 install -r requirements.txt
-fi
+
+pip3 install -r requirements.txt
+
 
 cd -
