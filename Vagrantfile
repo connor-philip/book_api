@@ -41,7 +41,7 @@ Vagrant.configure("2") do |config|
         path: "environment/db_container/run_db_container.sh",
         upload_path: "/vagrant/book_api/environment/db_container/run_db_container.sh"
 
-  # Run Unit Tests
+  # Build Unit Tests container
   config.vm.provision :shell, name: "run_db_container.sh",
         path: "environment/db_container/run_db_container.sh",
         upload_path: "/vagrant/book_api/environment/db_container/run_db_container.sh",
@@ -49,7 +49,21 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, name: "build_unit_test_container.sh",
         path: "environment/unit_test_container/build_unit_test_container.sh",
         upload_path: "/vagrant/book_api/environment/unit_test_container/build_unit_test_container.sh"
+
+  # Build Feature Tests container
+  config.vm.provision :shell, name: "run_app_container.sh",
+      path: "environment/app_container/run_app_container.sh",
+      upload_path: "/vagrant/book_api/environment/app_container/run_app_container.sh",
+      args: " test"
+  config.vm.provision :shell, name: "build_feature_test_container.sh",
+      path: "environment/feature_test_container/build_feature_test_container.sh",
+      upload_path: "/vagrant/book_api/environment/feature_test_container/build_feature_test_container.sh"
+
+  # Run Unit & Feature Tests.
   config.vm.provision :shell, name: "run_unit_test_container.sh",
         path: "environment/unit_test_container/run_unit_test_container.sh",
         upload_path: "/vagrant/book_api/environment/unit_test_container/run_unit_test_container.sh"
+  config.vm.provision :shell, name: "run_feature_test_container.sh",
+      path: "environment/feature_test_container/run_feature_test_container.sh",
+      upload_path: "/vagrant/book_api/environment/feature_test_container/run_feature_test_container.sh"
 end
