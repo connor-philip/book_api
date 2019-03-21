@@ -15,7 +15,7 @@ COPY environment/requirement_files/feature_test_requirements.txt /app/book_api/r
 
 RUN ["bash", "/app/book_api/environment/setup_scripts/apt_install_python3.sh"]
 RUN ["bash", "/app/book_api/environment/setup_scripts/pip_install_packages.sh"]
-RUN ["bash", "/app/book_api/environment/setup_scripts/apt_install_mongodb.sh"]
+RUN ["bash", "/app/book_api/environment/setup_scripts/apt_install_mongodb.sh", "client_only"]
 
 
 CMD ["behave", "--format", "progress", "book_api/tests/feature_tests/features"]

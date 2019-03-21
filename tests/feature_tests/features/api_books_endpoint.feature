@@ -6,11 +6,11 @@ Scenario Outline: These endpoints serve json
 
     Examples:
     | Endpoint                                      |
-    | "api/books"                                   |
+    | "api/books/"                                  |
     | "api/books/3ce55a9fb44a345f712b1360c2bf9d29"  |
-    | "api/authors"                                 |
+    | "api/authors/"                                |
     | "api/authors/Albert Camus"                    |
-    | "api/genres"                                  |
+    | "api/genres/"                                 |
     | "api/genres/fiction"                          |
 
 
@@ -21,9 +21,9 @@ Scenario Outline: These endpoints give the expected data
 
     Examples:
     | Endpoint                                      | Baseline              |
-    | "api/books"                                   | "books.json"          |
+    | "api/books/"                                  | "books.json"          |
     | "api/books/3ce55a9fb44a345f712b1360c2bf9d29"  | "books_book.json"     |
-    | "api/authors"                                 | "authors.json"        |
+    | "api/authors/"                                | "authors.json"        |
     | "api/authors/Albert Camus"                    | "authors_author.json" |
-    | "api/genres"                                  | "genres.json"         |
+    | "api/genres/"                                 | "genres.json"         |
     | "api/genres/fiction"                          | "genres_genre.json"   |
