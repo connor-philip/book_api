@@ -32,3 +32,11 @@ def the_response_matches_the_baseline(context, baselineFile):
         jsonFile.close()
 
     assert baseLineJson == context.responseBodyJson
+
+
+@behave.then("I recieve the status code \"{statusCode}\"")
+def then_i_recieve_the_status_code(context, statusCode):
+
+    responseStatusCode = str(context.endpointResponse.code)
+
+    assert responseStatusCode == statusCode
