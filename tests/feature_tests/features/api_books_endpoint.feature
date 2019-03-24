@@ -17,7 +17,7 @@ Scenario Outline: These endpoints serve json
     | "api/genres/fiction"                          |
 
 
-Scenario Outline: I recieve the expected status code for these requests
+Scenario Outline: I recieve the a 200 OK status codes for these requests
     Given I go to the <Endpoint> endpoint
     Then I recieve the status code "200"
 
@@ -29,6 +29,19 @@ Scenario Outline: I recieve the expected status code for these requests
     | "api/authors/Albert Camus"                    |
     | "api/genres/"                                 |
     | "api/genres/fiction"                          |
+
+
+
+
+Scenario Outline: I recieve the a 308 redirect status codes for these requests
+    Given I go to the <Endpoint> endpoint
+    Then I recieve the status code "308"
+
+    Examples:
+    | Endpoint                                     |
+    | "api/books"                                  |
+    | "api/authors"                                |
+    | "api/genres"                                 |
 
 
 Scenario Outline: These endpoints give the expected data

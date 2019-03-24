@@ -1,4 +1,5 @@
 import urllib.request as request
+from hamcrest import assert_that, equal_to
 import urllib.parse as parse
 import behave
 import json
@@ -8,7 +9,9 @@ import os
 @behave.given("I go to the \"{endpoint}\" endpoint")
 def go_to_endpoint(context, endpoint):
     requestUrl = "{}/{}".format(context.apiUrl, parse.quote(endpoint))
-    response = request.urlopen(requestUrl)
+    opener = request.OpenerDirector()
+    opener.add_handler(request.HTTPHandler())
+    response = opener.open(requestUrl)
 
     context.endpointResponse = response
     context.responseBodyString = context.endpointResponse.read().decode("utf8")
@@ -39,4 +42,4 @@ def then_i_recieve_the_status_code(context, statusCode):
 
     responseStatusCode = str(context.endpointResponse.code)
 
-    assert responseStatusCode == statusCode
+    assert_that(responseStatusCode, equal_to(statusCode))
