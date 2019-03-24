@@ -1,6 +1,6 @@
 @api
 
-Feature: Test the books endpoint of the book_api
+Feature: Test the endpoints give the expected response
 
 
 Scenario Outline: These endpoints serve json
@@ -16,29 +16,7 @@ Scenario Outline: These endpoints serve json
     | "api/genres/fiction"                          |
 
 
-Scenario Outline: I recieve the a 200 OK status codes for these requests
-    Given I go to the <Endpoint> endpoint
-    Then I recieve the status code "200"
-    Examples:
-    | Endpoint                                      |
-    | "api/books/"                                  |
-    | "api/books/3ce55a9fb44a345f712b1360c2bf9d29"  |
-    | "api/authors/"                                |
-    | "api/authors/Albert Camus"                    |
-    | "api/genres/"                                 |
-    | "api/genres/fiction"                          |
-
-
-Scenario Outline: I recieve the a 308 redirect status codes for these requests
-    Given I go to the <Endpoint> endpoint
-    Then I recieve the status code "308"
-    Examples:
-    | Endpoint                                     |
-    | "api/books"                                  |
-    | "api/authors"                                |
-    | "api/genres"                                 |
-
-
+@baseline
 Scenario Outline: These endpoints give the expected data
     Given I go to the <Endpoint> endpoint
     When I receive a JSON response

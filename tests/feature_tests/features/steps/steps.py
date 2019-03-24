@@ -22,7 +22,7 @@ def go_to_endpoint(context, endpoint):
 def recieve_json_response(context):
     responseInfo = context.endpointResponse.info()
 
-    assert responseInfo["Content-Type"] == "application/json"
+    assert_that(responseInfo["Content-Type"], equal_to("application/json"))
     context.responseBodyJson = json.loads(context.responseBodyString)
 
 
@@ -34,7 +34,7 @@ def the_response_matches_the_baseline(context, baselineFile):
         baseLineJson = json.load(jsonFile)
         jsonFile.close()
 
-    assert baseLineJson == context.responseBodyJson
+    assert_that(baseLineJson, equal_to(context.responseBodyJson))
 
 
 @behave.then("I recieve the status code \"{statusCode}\"")
