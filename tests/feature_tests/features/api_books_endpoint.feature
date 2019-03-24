@@ -6,7 +6,6 @@ Feature: Test the books endpoint of the book_api
 Scenario Outline: These endpoints serve json
     Given I go to the <Endpoint> endpoint
     Then I receive a JSON response
-
     Examples:
     | Endpoint                                      |
     | "api/books/"                                  |
@@ -20,7 +19,6 @@ Scenario Outline: These endpoints serve json
 Scenario Outline: I recieve the a 200 OK status codes for these requests
     Given I go to the <Endpoint> endpoint
     Then I recieve the status code "200"
-
     Examples:
     | Endpoint                                      |
     | "api/books/"                                  |
@@ -31,12 +29,9 @@ Scenario Outline: I recieve the a 200 OK status codes for these requests
     | "api/genres/fiction"                          |
 
 
-
-
 Scenario Outline: I recieve the a 308 redirect status codes for these requests
     Given I go to the <Endpoint> endpoint
     Then I recieve the status code "308"
-
     Examples:
     | Endpoint                                     |
     | "api/books"                                  |
@@ -48,7 +43,6 @@ Scenario Outline: These endpoints give the expected data
     Given I go to the <Endpoint> endpoint
     When I receive a JSON response
     Then the response matches the baseline file <Baseline>
-
     Examples:
     | Endpoint                                      | Baseline              |
     | "api/books/"                                  | "books.json"          |
