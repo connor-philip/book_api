@@ -1,0 +1,6 @@
+{
+    "bookObject": null,
+    "book_id": null,
+    "message": "\n\n1 is not a str:\n\t1\nInstead type is: <class 'int'>\n\n[1] list item is not a str:\n\t1\nInstead type is: <class 'int'>\n\n1 is not a list:\n\t1\nInstead type is: <class 'int'>\n\n[1] list item is not a str:\n\t1\nInstead type is: <class 'int'>\nISBN10 does not have the expected length of 10\nGot: 5\nISBN13 does not have the expected length of 13\nGot: 978125007482",
+    "success": false
+}

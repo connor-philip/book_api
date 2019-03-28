@@ -1,0 +1,19 @@
+{
+    "bookObject": {
+        "_id": "6958c2c0aee81432ad65b9be51969a4f",
+        "authors": [
+            "Fyodor Dostoyevsky"
+        ],
+        "genres": [
+            "fiction",
+            "Philosophical fiction"
+        ],
+        "isbn10": "0140449132",
+        "isbn13": "9780099981909",
+        "tags": [],
+        "title": "Crime And Punishment"
+    },
+    "book_id": "6958c2c0aee81432ad65b9be51969a4f",
+    "message": "Book added successfully",
+    "success": true
+}
