@@ -17,6 +17,29 @@ def go_to_endpoint(context, endpoint):
     context.responseBodyString = context.endpointResponse.read().decode("utf8")
 
 
+@behave.given("I \"{method}\" the data \"{dataFile}\" to the \"{endpoint}\" endpoint")
+def send_to_endpoint(context, method, dataFile, endpoint):
+    postDataFilePath = os.path.join(context.postDataDir, dataFile)
+    requestUrl = "{}/{}".format(context.apiUrl, parse.quote(endpoint))
+
+    with open(postDataFilePath, "r") as jsonFile:
+        postDataJson = json.load(jsonFile)
+        jsonFile.close()
+
+    postDataJsonStr = json.dumps(postDataJson).encode("utf8")
+    requestObj = request.Request(url=requestUrl,
+                                 data=postDataJsonStr,
+                                 method=method,
+                                 headers={"Content-Type": "application/json"})
+
+    opener = request.OpenerDirector()
+    opener.add_handler(request.HTTPHandler())
+    response = opener.open(requestObj)
+
+    context.endpointResponse = response
+    context.responseBodyString = context.endpointResponse.read().decode("utf8")
+
+
 @behave.then("I receive a JSON response")
 @behave.when("I receive a JSON response")
 def recieve_json_response(context):
