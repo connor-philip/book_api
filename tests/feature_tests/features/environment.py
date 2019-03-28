@@ -16,6 +16,7 @@ def before_feature(context, feature):
     context.featureTestsDir = os.path.abspath(os.path.join(context.featuresDir, ".."))
     context.testDataDir = os.path.join(context.featureTestsDir, "test_data")
     context.BaselineDir = os.path.join(context.testDataDir, "baselines")
+    context.postDataDir = os.path.join(context.testDataDir, "post_data")
     context.dbBson = os.path.join(context.testDataDir, "feature_tests_db",
                                   "bookdb", "books.bson")
 
