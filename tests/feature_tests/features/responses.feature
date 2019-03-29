@@ -30,6 +30,7 @@ Scenario Outline: These GET endpoints give the expected data
     | "api/genres/"                                 | "genres.json"         |
     | "api/genres/fiction"                          | "genres_genre.json"   |
 
+    # null response currently. Change behaviour to something better before adding these.
     # Examples: Unsuccessful GET responses
     # | Endpoint                                      | Baseline              |
     # | "api/books/invalid_id"                        | "books_book.json"     |

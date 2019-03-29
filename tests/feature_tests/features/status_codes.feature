@@ -21,3 +21,10 @@ Scenario Outline: I recieve the expected status codes
     | "api/books"                                  | "308"      |
     | "api/authors"                                | "308"      |
     | "api/genres"                                 | "308"      |
+
+    # 404 behaviour isn't consistant just now, improve API response and then add these tests
+    # Examples: 404
+    # | Endpoint                                     | StatusCode |
+    # | "api/books"                                  | "308"      |
+    # | "api/authors"                                | "308"      |
+    # | "api/genres"                                 | "308"      |
